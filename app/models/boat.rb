@@ -28,6 +28,6 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    self.joins(:classifications).select(:id, :name).group("boats.id").having("count(classifications.id) = 3")
+    self.joins(:classifications).group("boats.id").having("count(classifications.id) = ?", 3)
   end
 end
